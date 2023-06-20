@@ -34,3 +34,20 @@ def change(index: int, new: dict[str, str]):
         if field != '':
             phone_book[index - 1][key] = field
         
+
+def delete(index: int):
+    phone_book.pop(index - 1)
+
+def encoding() -> list[dict]:
+    copy_phonebook = []
+    for contact in phone_book:
+        id = contact.get('id')
+        name = contact.get('name')
+        phone = contact.get('phone')
+        comment = contact.get('comment')
+        copy_phonebook.append(f'{id}:{name}:{phone}:{comment}\n')
+    return copy_phonebook
+
+def save_file(data: list[dict]):
+    with open(path, 'w', encoding='UTF-8') as file:
+        file.writelines(data)
